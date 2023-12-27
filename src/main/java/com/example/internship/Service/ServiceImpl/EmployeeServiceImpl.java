@@ -78,7 +78,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getNthManager(String id, int n) {
         Employee employee = employeeRepo.findById(id).orElseThrow(()-> new EmployeeDoesNotExist("Employee Does not Exists with id: "+id));
         for (int i = 1;i<=n;i++){
-            Employee employee1 = employeeRepo.findById(employee.getReportsTo()).orElseThrow(()-> new EmployeeDoesNotExist("Employee Does not Exists with id"+id));
+            Employee employee1 = employeeRepo.findById(employee.getReportsTo()).orElseThrow(()-> new EmployeeDoesNotExist("This employee does not report to anyone on this level"));
             employee = employee1;
         }
         return employee;
