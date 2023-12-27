@@ -38,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             simpleMailMessage.setSubject("New Employee Added Under You");
             simpleMailMessage.setText(String.format("Employee with name : %s , Phone Number ; %s and Email : %s has been added under you",employee.getEmployeeName(),employee.getPhoneNumber(),employee.getEmail()));
             Employee employee1 = employeeRepo.findById(employee.getReportsTo())
-                    .orElseThrow(()-> new EmployeeDoesNotExist("This Employee Does Not Report to Anyone , Employee Added with id: "++employee.getId()));
+                    .orElseThrow(()-> new EmployeeDoesNotExist("Employee Does not report to anyone , Employee created "+employee.getId()));
             simpleMailMessage.setTo(employee1.getEmail());
             javaMailSender.send(simpleMailMessage);
         }else{
