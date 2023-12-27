@@ -37,7 +37,7 @@ public class EmployeeController {
     }
     @DeleteMapping("delete/{Id}")
     public ResponseEntity<String> delete(@PathVariable String Id){
-
+        employeeService.deleteEmployee(Id);
         return new ResponseEntity<>("Deleted Successfully",HttpStatus.OK);
     }
     @GetMapping("getNthLevelManager/{Id}/{level}")
